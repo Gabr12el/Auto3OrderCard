@@ -25,25 +25,251 @@ public class OrderCardTest {
         driver = new ChromeDriver();
     }
 
-    @AfterEach//после каждого
+    @AfterEach
+//после каждого
     void tearsDown() {//закрыть драйвер и занулить
         driver.quit();
         driver = null;
     }
 
     @Test
-    void test() {//открыть драйвер
+    void ShouldValid() {//открыть драйвер
         driver.get("http://localhost:9999");//бряку ставить чтоб увидеть браузер
 //        System.out.println("");
-//        driver.findElement().sendKeys("Протопоп Акакий");//Ф.И.
-//        driver.findElement().sendKeys("+78881113355");//Телефон
-        List<WebElement> textFields = driver.findElements(By.className("input__control"));
-        textFields.get(0).sendKeys("Протопоп Акакий");
-        textFields.get(1).sendKeys("+78881113355");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+78881113355");//Телефон
+        //А можно делать так:
+//        List<WebElement> textFields = driver.findElements(By.className("input__control"));
+//        textFields.get(0).sendKeys("Протопоп Акакий");
+//        textFields.get(1).sendKeys("+78881113355");
+        driver.findElement(By.cssSelector(".checkbox__box")).click();//Галочка
+        driver.findElement(By.cssSelector("button")).click();//Кнопка продоложить
+        //А можно делать так:
+//        driver.findElement(By.className("checkbox__box")).click();//Галочка
+//        driver.findElement(By.tagName("button")).click();//Кнопка продоложить
+// По лекции Ксюши:
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();//трим пробелы убирает
 
-        driver.findElement(By.className("checkbox__box")).click();//Галочка
-        driver.findElement(By.tagName("button")).click();//Кнопка продоложить
-        String actualText = driver.findElement(By.className("order-success")).getText().trim();//трим пробелы убирает
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidName1() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Protopop Акакий");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+78881113355");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidName2() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Ёкарный Бабай");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+78881113355");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidName3() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Екарный-Бабай");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+78881113355");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidName4() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Абдурахман ибн Хаттаб");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+78881113355");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+    @Test
+    void ShouldInvalidName5() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Абдурахман");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+78881113355");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+    @Test
+    void ShouldInvalidTel10() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+7888111335");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidTel12() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+788811133567");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidTelSym() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+78р81113355");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidTelSym2() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("-78581113355");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidTelSym3() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("7+8581113355");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidTelSym4() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("88581113355");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidField1() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("88581113355");//Телефон
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidField2() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
+
+        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
+        String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, actualText);
+    }
+
+    @Test
+    void ShouldInvalidAgree() {//открыть драйвер
+        driver.get("http://localhost:9999");
+        //Можно делать по type:
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Protopop Акакий");//Ф.И.
+        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+78881113355");//Телефон
+
+        driver.findElement(By.cssSelector("button")).click();
+
+        String actualText = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText().trim();
+
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         assertEquals(expected, actualText);
     }
