@@ -10,8 +10,8 @@ build: off  # будем использовать свой скрипт сбор
 
 install:
   # запускаем SUT (& означает, что в фоновом режиме - не блокируем терминал для запуска тестов)
-  - java -jar ./artifacts/app-order.jar & //вот это лишнее
+  - java -jar ./artifacts/app-order.jar & # вот это лишнее
 
 build_script:
   - chmod +x gradlew
-  - ./gradlew test --info -Dselenide.headless=true //Для selenide headless режим активируется при запуске тестов с определенным параметром
+  - ./gradlew test --info -Dselenide.headless=true # Для selenide headless режим активируется при запуске тестов с определенным параметром
