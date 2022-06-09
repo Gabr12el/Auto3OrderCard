@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
 
@@ -16,13 +17,19 @@ public class OrderCardTest {
     @BeforeAll
     static void setupAll() {//psv тоже можно
         //просто путь к драйверу выполн перед каждым тестом
-        System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");
     }
 
     @BeforeEach
     void setUp() {
         //инициал поле драйвер. Будет выполн перед кажд тест методом
         driver = new ChromeDriver();
+        //Включение headless режима при использовании selenium необходимо реализовать в коде во время создания экземпляра webdriver
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
@@ -56,7 +63,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidName1() {//открыть драйвер
+    void ShouldInvalidName1() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Protopop Акакий");//Ф.И.
@@ -72,7 +79,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidName2() {//открыть драйвер
+    void ShouldInvalidName2() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Ёкарный Бабай");//Ф.И.
@@ -88,7 +95,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidName3() {//открыть драйвер
+    void ShouldInvalidName3() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Екарный-Бабай");//Ф.И.
@@ -104,7 +111,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidName4() {//открыть драйвер
+    void ShouldInvalidName4() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Абдурахман ибн Хаттаб");//Ф.И.
@@ -119,7 +126,7 @@ public class OrderCardTest {
         assertEquals(expected, actualText);
     }
     @Test
-    void ShouldInvalidName5() {//открыть драйвер
+    void ShouldInvalidName5() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Абдурахман");//Ф.И.
@@ -134,7 +141,7 @@ public class OrderCardTest {
         assertEquals(expected, actualText);
     }
     @Test
-    void ShouldInvalidTel10() {//открыть драйвер
+    void ShouldInvalidTel10() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
@@ -150,7 +157,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidTel12() {//открыть драйвер
+    void ShouldInvalidTel12() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
@@ -166,7 +173,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidTelSym() {//открыть драйвер
+    void ShouldInvalidTelSym() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
@@ -182,7 +189,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidTelSym2() {//открыть драйвер
+    void ShouldInvalidTelSym2() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
@@ -198,7 +205,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidTelSym3() {//открыть драйвер
+    void ShouldInvalidTelSym3() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
@@ -214,7 +221,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidTelSym4() {//открыть драйвер
+    void ShouldInvalidTelSym4() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
@@ -230,7 +237,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidField1() {//открыть драйвер
+    void ShouldInvalidField1() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='tel']")).sendKeys("88581113355");//Телефон
@@ -245,7 +252,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidField2() {//открыть драйвер
+    void ShouldInvalidField2() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Протопоп Акакий");//Ф.И.
@@ -260,7 +267,7 @@ public class OrderCardTest {
     }
 
     @Test
-    void ShouldInvalidAgree() {//открыть драйвер
+    void ShouldInvalidAgree() {
         driver.get("http://localhost:9999");
         //Можно делать по type:
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Protopop Акакий");//Ф.И.
